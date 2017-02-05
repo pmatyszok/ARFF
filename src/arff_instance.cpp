@@ -1,30 +1,36 @@
 #include <arff_instance.h>
 
 
-
-ArffInstance::ArffInstance(): m_size(0), m_data() {
+ArffInstance::ArffInstance(): m_size(0), m_data()
+{
 }
 
-ArffInstance::~ArffInstance() {
-    std::vector<ArffValue*>::iterator itr;
-    for(itr=m_data.begin();itr!=m_data.end();++itr) {
-        delete *itr;
-    }
+ArffInstance::~ArffInstance()
+{
+	std::vector<ArffValue*>::iterator itr;
+	for (itr = m_data.begin(); itr != m_data.end(); ++itr)
+	{
+		delete *itr;
+	}
 }
 
-std::size_t ArffInstance::size() const {
-    return m_size;
+std::size_t ArffInstance::size() const
+{
+	return m_size;
 }
 
-void ArffInstance::add(ArffValue* val) {
-    m_data.push_back(val);
-    ++m_size;
+void ArffInstance::add(ArffValue* val)
+{
+	m_data.push_back(val);
+	++m_size;
 }
 
-ArffValue* ArffInstance::get(std::size_t idx) const {
-    if((idx < 0) || (idx >= m_size)) {
-        ARFF_LIB_THROW("ArffInstance::get Index out of bounds! idx=%d size=%d",
-              idx, m_size);
-    }
-    return m_data[idx];
+ArffValue* ArffInstance::get(std::size_t idx) const
+{
+	if ((idx < 0) || (idx >= m_size))
+	{
+		ARFF_LIB_THROW("ArffInstance::get Index out of bounds! idx=%d size=%d",
+			idx, m_size);
+	}
+	return m_data[idx];
 }

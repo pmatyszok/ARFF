@@ -19,89 +19,90 @@
  *
  * This class assumes linux-style newlines!
  */
-class ArffScanner {
+class ArffScanner
+{
 public:
-    /**
-     * @brief Constructor
-     * @param _file file to be read
-     */
-    ArffScanner(const std::string& _file);
+	/**
+	 * @brief Constructor
+	 * @param _file file to be read
+	 */
+	ArffScanner(const std::string& _file);
 
-    /**
-     * @brief Destructor
-     */
-    ~ArffScanner();
+	/**
+	 * @brief Destructor
+	 */
+	~ArffScanner();
 
-    /**
-     * @brief Return the next character in the stream
-     * @return character
-     */
-    char next();
+	/**
+	 * @brief Return the next character in the stream
+	 * @return character
+	 */
+	char next();
 
-    /**
-     * @brief Returns the currently read char from the file
-     * @return current character
-     */
-    char current() const;
+	/**
+	 * @brief Returns the currently read char from the file
+	 * @return current character
+	 */
+	char current() const;
 
-    /**
-     * @brief Returns the previously read char from the file
-     * @return previous character
-     */
-    char previous() const;
+	/**
+	 * @brief Returns the previously read char from the file
+	 * @return previous character
+	 */
+	char previous() const;
 
-    /**
-     * @brief Returns the current line position
-     * @return current line
-     */
-    unsigned long long line() const;
+	/**
+	 * @brief Returns the current line position
+	 * @return current line
+	 */
+	unsigned long long line() const;
 
-    /**
-     * @brief Returns the current column position
-     * @return current column
-     */
-    unsigned long long column() const;
+	/**
+	 * @brief Returns the current column position
+	 * @return current column
+	 */
+	unsigned long long column() const;
 
-    /**
-     * @brief Whether the file has reached end or not
-     * @return true if end-of-file, else false
-     */
-    bool eof() const;
+	/**
+	 * @brief Whether the file has reached end or not
+	 * @return true if end-of-file, else false
+	 */
+	bool eof() const;
 
-    /**
-     * @brief Give a nice error message along with file,line,col info
-     * @param msg actual error message to be prepended with the above info
-     * @return prepended 'meaningful' error message
-     */
-    std::string err_msg(const std::string& msg) const;
+	/**
+	 * @brief Give a nice error message along with file,line,col info
+	 * @param msg actual error message to be prepended with the above info
+	 * @return prepended 'meaningful' error message
+	 */
+	std::string err_msg(const std::string& msg) const;
 
-    /**
-     * @brief Checks whether the given character is newline or not
-     * @param c the character
-     * @return true if the character is newline, else false
-     */
-    bool is_newline(char c) const;
+	/**
+	 * @brief Checks whether the given character is newline or not
+	 * @param c the character
+	 * @return true if the character is newline, else false
+	 */
+	bool is_newline(char c) const;
 
 
-    /** new-line character */
-    static const char NEWLINE;
+	/** new-line character */
+	static const char NEWLINE;
 
 
 private:
 
 
-    /** file being read */
-    std::string m_file;
-    /** current line being read */
-    unsigned long long m_line;
-    /** current position in the row being read */
-    unsigned long long m_col;
-    /** current character read from the file */
-    char m_char;
-    /** previous character read from the file */
-    char m_prev_char;
-    /** file pointer */
-    FILE* m_fp;
+	/** file being read */
+	std::string m_file;
+	/** current line being read */
+	unsigned long long m_line;
+	/** current position in the row being read */
+	unsigned long long m_col;
+	/** current character read from the file */
+	char m_char;
+	/** previous character read from the file */
+	char m_prev_char;
+	/** file pointer */
+	FILE* m_fp;
 };
 
 

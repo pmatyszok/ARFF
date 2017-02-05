@@ -12,9 +12,9 @@
 
 
 /** 32 bit integer */
-typedef long int    int32;
+typedef long int int32;
 /** 64 bit integer */
-typedef long long   int64;
+typedef long long int64;
 
 
 /**
@@ -31,20 +31,21 @@ void throw_ex(const char* file, int64 line, const char* fmt, ...);
     throw_ex(__FILE__, (int64)__LINE__, fmt, ##__VA_ARGS__)
 
 
-
 /**
  * @brief Converts a string to number
  * @param str the string to be converted
  * @param num the desired number
  */
 template <typename T>
-void str2num(const std::string& str, T& num) {
-    std::istringstream iss(str);
-    iss >> num;
-    if(iss.fail()) {
-        ARFF_LIB_THROW("(str2num) Input '%s' is not a number!", str.c_str());
-    }
-    return;
+void str2num(const std::string& str, T& num)
+{
+	std::istringstream iss(str);
+	iss >> num;
+	if (iss.fail())
+	{
+		ARFF_LIB_THROW("(str2num) Input '%s' is not a number!", str.c_str());
+	}
+	return;
 }
 
 

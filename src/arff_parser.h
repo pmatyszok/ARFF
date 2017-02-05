@@ -15,56 +15,57 @@
  * @class ArffParser arff_parser.h
  * @brief Main class for parsing ARFF files
  */
-class ArffParser {
+class ArffParser
+{
 public:
-    /**
-     * @brief Constructor
-     * @param _file File to be parsed
-     */
-    ArffParser(const std::string& _file);
+	/**
+	 * @brief Constructor
+	 * @param _file File to be parsed
+	 */
+	ArffParser(const std::string& _file);
 
-    /**
-     * @brief Destructor
-     */
-    ~ArffParser();
+	/**
+	 * @brief Destructor
+	 */
+	~ArffParser();
 
-    /**
-     * @brief Main function for parsing the file
-     * @return the 'ArffData' object after parsing the file
-     *
-     * Note that this pointer will still be owned by this class!
-     */
-    ArffData* parse();
+	/**
+	 * @brief Main function for parsing the file
+	 * @return the 'ArffData' object after parsing the file
+	 *
+	 * Note that this pointer will still be owned by this class!
+	 */
+	ArffData* parse();
 
 
 private:
-    /**
-     * @brief Reads the 'relation' token
-     */
-    void _read_relation();
+	/**
+	 * @brief Reads the 'relation' token
+	 */
+	void _read_relation();
 
-    /**
-     * @brief Reads the attributes
-     */
-    void _read_attrs();
+	/**
+	 * @brief Reads the attributes
+	 */
+	void _read_attrs();
 
-    /**
-     * @brief Reads one attribute
-     */
-    void _read_attr();
+	/**
+	 * @brief Reads one attribute
+	 */
+	void _read_attr();
 
-    /**
-     * @brief Reads the data
-     */
-    void _read_instances();
+	/**
+	 * @brief Reads the data
+	 */
+	void _read_instances();
 
 
-    /** lexer for generating tokens */
-    ArffLexer* m_lexer;
-    /** whether you have already parsed the file or not */
-    bool m_parsed;
-    /** the data parsed from the ARFF file */
-    ArffData* m_data;
+	/** lexer for generating tokens */
+	ArffLexer* m_lexer;
+	/** whether you have already parsed the file or not */
+	bool m_parsed;
+	/** the data parsed from the ARFF file */
+	ArffData* m_data;
 };
 
 

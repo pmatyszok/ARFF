@@ -15,48 +15,49 @@
  * @class ArffInstance arff_instance.h
  * @brief Class to represent one single instance of data
  */
-class ArffInstance {
+class ArffInstance
+{
 public:
-    /**
-     * @brief Constructor
-     */
-    ArffInstance();
+	/**
+	 * @brief Constructor
+	 */
+	ArffInstance();
 
-    /**
-     * @brief Destructor
-     */
-    ~ArffInstance();
+	/**
+	 * @brief Destructor
+	 */
+	~ArffInstance();
 
-    /**
-     * @brief Number of elements in the instance
-     * @return number
-     */
-    std::size_t size()const;
+	/**
+	 * @brief Number of elements in the instance
+	 * @return number
+	 */
+	std::size_t size() const;
 
-    /**
-     * @brief Add an instance data into the list
-     * @param val the data to be added
-     *
-     * Note that this pointer will be owned by this class from here onwards!
-     */
-    void add(ArffValue* val);
+	/**
+	 * @brief Add an instance data into the list
+	 * @param val the data to be added
+	 *
+	 * Note that this pointer will be owned by this class from here onwards!
+	 */
+	void add(ArffValue* val);
 
-    /**
-     * @brief Get an instance data at the given location
-     * @param idx location (starts from 0)
-     * @return data
-     *
-     * Note that this pointer will still be owned by this class!
-     */
-    ArffValue* get(std::size_t idx) const;
+	/**
+	 * @brief Get an instance data at the given location
+	 * @param idx location (starts from 0)
+	 * @return data
+	 *
+	 * Note that this pointer will still be owned by this class!
+	 */
+	ArffValue* get(std::size_t idx) const;
 
 
 private:
-    /** instance size */
-    std::size_t m_size;
-    /** instance data */
-    std::vector<ArffValue*> m_data;
-}; 
+	/** instance size */
+	std::size_t m_size;
+	/** instance data */
+	std::vector<ArffValue*> m_data;
+};
 
 
 /* DO NOT WRITE ANYTHING BELOW THIS LINE!!! */

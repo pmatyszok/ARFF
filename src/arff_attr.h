@@ -14,38 +14,39 @@
  * @class ArffAttr arff_attr.h
  * @brief Class to represent an ARFF attribute
  */
-class ArffAttr {
+class ArffAttr
+{
 public:
-    /**
-     * @brief Constructor
-     * @param name name of this attribute
-     * @param type attribute type
-     */
-    ArffAttr(const std::string& name, ArffValueEnum type);
+	/**
+	 * @brief Constructor
+	 * @param name name of this attribute
+	 * @param type attribute type
+	 */
+	ArffAttr(const std::string& name, ArffValueEnum type);
 
-    /**
-     * @brief Destructor
-     */
-    ~ArffAttr();
+	/**
+	 * @brief Destructor
+	 */
+	~ArffAttr();
 
-    /**
-     * @brief Name of this attribute
-     * @return name
-     */
-    std::string name() const;
+	/**
+	 * @brief Name of this attribute
+	 * @return name
+	 */
+	std::string name() const;
 
-    /**
-     * @brief Type of this attribute
-     * @return type
-     */
-    ArffValueEnum type() const;
+	/**
+	 * @brief Type of this attribute
+	 * @return type
+	 */
+	ArffValueEnum type() const;
 
 
 private:
-    /** attribute name */
-    std::string m_name;
-    /** attribute type */
-    ArffValueEnum m_enum;
+	/** attribute name */
+	std::string m_name;
+	/** attribute type */
+	ArffValueEnum m_enum;
 };
 
 
