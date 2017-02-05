@@ -1,10 +1,10 @@
 #include <stdexcept>
 
 #include <arff_utils.h>
+#include <cctype>
 
+static const unsigned int STR_LENGTH = 2048;
 
-
-#define STR_LENGTH 2048
 void throw_ex(const char* file, int64 line, const char* fmt, ...) {
     char msg[STR_LENGTH];
     va_list va;
@@ -17,14 +17,6 @@ void throw_ex(const char* file, int64 line, const char* fmt, ...) {
     std::runtime_error ex(err);
     throw ex;
 }
-#undef STR_LENGTH
-
-char to_lower(char c) {
-    if((c >= 'A') && (c <= 'Z')) {
-        return ((c - 'A') + 'a');
-    }
-    return c;
-}
 
 bool icompare(const std::string& str, const std::string& ref) {
     size_t s1 = str.size();
@@ -35,7 +27,7 @@ bool icompare(const std::string& str, const std::string& ref) {
     const char* ch1 = str.c_str();
     const char* ch2 = ref.c_str();
     for(size_t i=0;i<s1;++i) {
-        if(to_lower(ch1[i]) != to_lower(ch2[i])) {
+        if(tolower(ch1[i]) != tolower(ch2[i])) {
             return false;
         }
     }
