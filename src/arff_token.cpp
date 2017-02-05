@@ -46,7 +46,7 @@ int32 ArffToken::token_int32() const {
 
 int64 ArffToken::token_int64() const {
     if(m_enum != VALUE_TOKEN) {
-        THROW("ArffToken::token_int64 token is not '%s', it's '%s'!",
+        ARFF_LIB_THROW("ArffToken::token_int64 token is not '%s', it's '%s'!",
               "VALUE_TOKEN", arff_token2str(m_enum).c_str());
     }
     int64 num;
@@ -60,7 +60,7 @@ float ArffToken::token_float() const {
 
 double ArffToken::token_double() const {
     if(m_enum != VALUE_TOKEN) {
-        THROW("ArffToken::token_double token is not '%s', it's '%s'!",
+        ARFF_LIB_THROW("ArffToken::token_double token is not '%s', it's '%s'!",
               "VALUE_TOKEN", arff_token2str(m_enum).c_str());
     }
     double num;

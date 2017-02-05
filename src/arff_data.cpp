@@ -43,9 +43,9 @@ void ArffData::add_attr(ArffAttr* attr) {
     ++m_num_attrs;
 }
 
-ArffAttr* ArffData::get_attr(int32 idx) const {
+ArffAttr* ArffData::get_attr(std::size_t idx) const {
     if((idx < 0) || (idx >= m_num_attrs)) {
-        THROW("%s index out of bounds! idx=%d size=%d",
+        ARFF_LIB_THROW("%s index out of bounds! idx=%d size=%d",
               "ArffData::get_attr", idx, m_num_attrs);
     }
     return m_attrs[idx];
@@ -61,9 +61,9 @@ void ArffData::add_instance(ArffInstance* inst) {
     ++m_num_instances;
 }
 
-ArffInstance* ArffData::get_instance(int32 idx) const {
+ArffInstance* ArffData::get_instance(std::size_t idx) const {
     if((idx < 0) || (idx >= m_num_instances)) {
-        THROW("%s index out of bounds! idx=%d size=%d",
+        ARFF_LIB_THROW("%s index out of bounds! idx=%d size=%d",
               "ArffData::get_instance", idx, m_num_instances);
     }
     return m_instances[idx];
@@ -76,7 +76,7 @@ void ArffData::add_nominal_val(const std::string& name,
 
 ArffNominal ArffData::get_nominal(const std::string& name) {
     if(m_nominals.find(name) == m_nominals.end()) {
-        THROW("ArffData::get_nominal list named '%s' does not exist!",
+        ARFF_LIB_THROW("ArffData::get_nominal list named '%s' does not exist!",
               name.c_str());
     }
     return m_nominals[name];
@@ -89,7 +89,7 @@ void ArffData::add_date_format(const std::string& name,
 
 std::string ArffData::get_date_format(const std::string& name) {
     if(m_formats.find(name) == m_formats.end()) {
-        THROW("ArffData::get_date_format date named '%s' does not exist!",
+        ARFF_LIB_THROW("ArffData::get_date_format date named '%s' does not exist!",
               name.c_str());
     }
     return m_formats[name];
@@ -97,13 +97,13 @@ std::string ArffData::get_date_format(const std::string& name) {
 
 void ArffData::_cross_check_instance(ArffInstance* inst) {
     if(inst == NULL) {
-        THROW("ArffData: input instance pointer is null!");
+        ARFF_LIB_THROW("ArffData: input instance pointer is null!");
     }
     if(inst->size() != m_num_attrs) {
-        THROW("%s: instance size and num-attrs mismatch inst=%d attrs=%d",
+        ARFF_LIB_THROW("%s: instance size and num-attrs mismatch inst=%d attrs=%d",
               "ArffData", inst->size(), m_num_attrs);
     }
-    for(int32 i=0;i<m_num_attrs;++i) {
+    for(std::size_t i=0u;i<m_num_attrs;++i) {
         ArffValue* val = inst->get(i);
         ArffAttr* attr = m_attrs[i];
         ArffValueEnum valType = val->type();
@@ -115,7 +115,7 @@ void ArffData::_cross_check_instance(ArffInstance* inst) {
         bool v_nas = (valType != STRING);
         // bad numeric/nominal
         if((a_is_num && v_nan) || (a_is_nom && v_nas)) {
-            THROW("%s: attr-name=%s attr-type=%s, but inst-type=%s!",
+            ARFF_LIB_THROW("%s: attr-name=%s attr-type=%s, but inst-type=%s!",
                   "ArffData", attr->name().c_str(),
                   arff_value2str(attType).c_str(),
                   arff_value2str(valType).c_str());
@@ -131,7 +131,7 @@ void ArffData::_cross_check_instance(ArffInstance* inst) {
                 }
             }
             if(itr == nom.end()) {
-                THROW("%s: attr:(name=%s type=%s) inst-val=%s not found!",
+                ARFF_LIB_THROW("%s: attr:(name=%s type=%s) inst-val=%s not found!",
                       "ArffData", attr->name().c_str(),
                       arff_value2str(attType).c_str(), str.c_str());
             }
@@ -141,7 +141,7 @@ void ArffData::_cross_check_instance(ArffInstance* inst) {
         }
         // data mismatch
         if(attType != valType) {
-            THROW("%s: attr-name=%s attr-type=%s, but inst-type=%s!",
+            ARFF_LIB_THROW("%s: attr-name=%s attr-type=%s, but inst-type=%s!",
                   "ArffData", attr->name().c_str(),
                   arff_value2str(attType).c_str(),
                   arff_value2str(valType).c_str());

@@ -31,7 +31,7 @@ public:
      * @brief Number of elements in the instance
      * @return number
      */
-    int32 size()const;
+    std::size_t size()const;
 
     /**
      * @brief Add an instance data into the list
@@ -48,12 +48,12 @@ public:
      *
      * Note that this pointer will still be owned by this class!
      */
-    ArffValue* get(int idx) const;
+    ArffValue* get(std::size_t idx) const;
 
 
 private:
     /** instance size */
-    int32 m_size;
+    std::size_t m_size;
     /** instance data */
     std::vector<ArffValue*> m_data;
 }; 

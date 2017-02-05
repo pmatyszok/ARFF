@@ -69,7 +69,7 @@ public:
      *
      * Note that this pointer will still be owned by this class!
      */
-    ArffAttr* get_attr(int32 idx) const;
+    ArffAttr* get_attr(std::size_t idx) const;
 
     /**
      * @brief Number of instances
@@ -92,7 +92,7 @@ public:
      *
      * Note that this pointer will still be owned by this class!
      */
-    ArffInstance* get_instance(int32 idx) const;
+    ArffInstance* get_instance(std::size_t idx) const;
 
     /**
      * @brief Add a nominal value to the list
@@ -144,11 +144,11 @@ private:
     /** date formats */
     ArffDateFormat m_formats;
     /** number of attributes */
-    int32 m_num_attrs;
+    std::size_t m_num_attrs;
     /** attributes */
     std::vector<ArffAttr*> m_attrs;
     /** number of instances */
-    int32 m_num_instances;
+    std::size_t m_num_instances;
     /** instances */
     std::vector<ArffInstance*> m_instances;
 };

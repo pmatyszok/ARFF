@@ -36,14 +36,14 @@ void ArffParser::_read_relation() {
     // @relation
     ArffToken tok1 = m_lexer->next_token();
     if(tok1.token_enum() != RELATION) {
-        THROW("%s: First token must be of 'RELATION'! It is '%s'",
+        ARFF_LIB_THROW("%s: First token must be of 'RELATION'! It is '%s'",
               "ArffParser::_read_relation",
               arff_token2str(tok1.token_enum()).c_str());
     }
     // name
     ArffToken tok2 = m_lexer->next_token();
     if(tok2.token_enum() != VALUE_TOKEN) {
-        THROW("%s: RELATION token must be followed by %s! It is '%s'",
+        ARFF_LIB_THROW("%s: RELATION token must be followed by %s! It is '%s'",
               "ArffParser::_read_relation", "VALUE_TOKEN",
               arff_token2str(tok2.token_enum()).c_str());
     }
@@ -59,7 +59,7 @@ void ArffParser::_read_attrs() {
             break;
         }
         if(type != ATTRIBUTE) {
-            THROW("%s: First token must be of 'ATTRIBUTE'! It is '%s'",
+            ARFF_LIB_THROW("%s: First token must be of 'ATTRIBUTE'! It is '%s'",
                   "ArffParser::_read_attrs", arff_token2str(type).c_str());
         }
         _read_attr();
@@ -70,7 +70,7 @@ void ArffParser::_read_attr() {
     // name
     ArffToken name = m_lexer->next_token();
     if(name.token_enum() != VALUE_TOKEN) {
-        THROW("%s: 'ATTRIBUTE' must be followed by a '%s'! It is '%s'",
+        ARFF_LIB_THROW("%s: 'ATTRIBUTE' must be followed by a '%s'! It is '%s'",
               "ArffParser::_read_attr", "VALUE_TOKEN",
               arff_token2str(name.token_enum()).c_str());
     }
@@ -92,7 +92,7 @@ void ArffParser::_read_attr() {
         ave = NOMINAL;
         break;
     default:
-        THROW("%s: Bad attribute type for name=%s attr-type=%s!",
+        ARFF_LIB_THROW("%s: Bad attribute type for name=%s attr-type=%s!",
               "ArffParser::_read_attr", name.token_str().c_str(),
               arff_token2str(ate).c_str());
     }
@@ -111,7 +111,7 @@ void ArffParser::_read_attr() {
             break;
         }
         else {
-            THROW("%s: For nominal values expecting '%s' got '%s' token!",
+            ARFF_LIB_THROW("%s: For nominal values expecting '%s' got '%s' token!",
               "ArffParser::_read_attr", "VALUE_TOKEN",
               arff_token2str(tok.token_enum()).c_str());
         }
@@ -132,7 +132,7 @@ void ArffParser::_read_instances() {
                 break;
             }
             if((type != VALUE_TOKEN) && (type != MISSING_TOKEN)) {
-                THROW("%s expects '%s' or '%s', it is '%s'!",
+                ARFF_LIB_THROW("%s expects '%s' or '%s', it is '%s'!",
                       "ArffParser::_read_instances", "VALUE_TOKEN",
                       "MISSING_TOKEN", arff_token2str(type).c_str());
             }

@@ -27,7 +27,7 @@ void throw_ex(const char* file, int64 line, const char* fmt, ...);
 
 
 /** Handy macro to throw exceptions */
-#define THROW(fmt, ...)                                         \
+#define ARFF_LIB_THROW(fmt, ...)                                         \
     throw_ex(__FILE__, (int64)__LINE__, fmt, ##__VA_ARGS__)
 
 
@@ -56,7 +56,7 @@ void str2num(const std::string& str, T& num) {
     std::istringstream iss(str);
     iss >> num;
     if(iss.fail()) {
-        THROW("(str2num) Input '%s' is not a number!", str.c_str());
+        ARFF_LIB_THROW("(str2num) Input '%s' is not a number!", str.c_str());
     }
     return;
 }

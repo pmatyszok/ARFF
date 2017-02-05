@@ -12,7 +12,7 @@ ArffScanner::ArffScanner(const std::string& _file): m_file(_file),
                                             m_fp(NULL) {
     m_fp = fopen(m_file.c_str(), "r");
     if(m_fp == NULL) {
-        THROW("ArffScanner: failed to open the file '%s'!", m_file.c_str());
+        ARFF_LIB_THROW("ArffScanner: failed to open the file '%s'!", m_file.c_str());
     }
 }
 
@@ -51,11 +51,11 @@ char ArffScanner::previous() const {
     return m_prev_char;
 }
 
-int64 ArffScanner::line() const {
+unsigned long long ArffScanner::line() const {
     return m_line;
 }
 
-int64 ArffScanner::column() const {
+unsigned long long ArffScanner::column() const {
     return m_col;
 }
 

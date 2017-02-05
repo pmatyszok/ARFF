@@ -12,7 +12,7 @@ ArffInstance::~ArffInstance() {
     }
 }
 
-int32 ArffInstance::size() const {
+std::size_t ArffInstance::size() const {
     return m_size;
 }
 
@@ -21,9 +21,9 @@ void ArffInstance::add(ArffValue* val) {
     ++m_size;
 }
 
-ArffValue* ArffInstance::get(int idx) const {
+ArffValue* ArffInstance::get(std::size_t idx) const {
     if((idx < 0) || (idx >= m_size)) {
-        THROW("ArffInstance::get Index out of bounds! idx=%d size=%d",
+        ARFF_LIB_THROW("ArffInstance::get Index out of bounds! idx=%d size=%d",
               idx, m_size);
     }
     return m_data[idx];

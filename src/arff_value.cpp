@@ -83,7 +83,7 @@ void ArffValue::set(float f) {
 
 void ArffValue::set(const std::string& str, ArffValueEnum e/*=STRING*/) {
     if((e != DATE) && (e != STRING)) {
-        THROW("%s expects 'DATE' or 'STRING', you've passed '%s'!",
+        ARFF_LIB_THROW("%s expects 'DATE' or 'STRING', you've passed '%s'!",
               "ArffValue::set", arff_value2str(e).c_str());
     }
     m_type = e;
@@ -101,7 +101,7 @@ ArffValue::operator int32() const {
     case FLOAT:
         return (int32)m_float;
     default:
-        THROW("operator int32 cannot work on type '%s'!",
+        ARFF_LIB_THROW("operator int32 cannot work on type '%s'!",
               arff_value2str(m_type).c_str());
         return 0;  // I need to keep the compiler happy!
     }
@@ -114,7 +114,7 @@ ArffValue::operator float() const {
     case FLOAT:
         return m_float;
     default:
-        THROW("operator float cannot work on type '%s'!",
+        ARFF_LIB_THROW("operator float cannot work on type '%s'!",
               arff_value2str(m_type).c_str());
         return 0.0f;  // I need to keep the compiler happy!
     }
@@ -130,7 +130,7 @@ ArffValue::operator std::string() const {
     case STRING:
         return m_str;
     default:
-        THROW("operator std::string cannot work on type '%s'!",
+        ARFF_LIB_THROW("operator std::string cannot work on type '%s'!",
               arff_value2str(m_type).c_str());
         return "";  // I need to keep the compiler happy!
     }
