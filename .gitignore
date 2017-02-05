@@ -4,3 +4,5 @@
 
 *.sdf
 /src/Debug
+/src/x64/Debug
+*.opendb
